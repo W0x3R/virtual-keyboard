@@ -89,28 +89,23 @@
   border: 5px solid #e70d0d;
 }
 
-.btn.mid {
+.medium {
   -ms-flex-preferred-size: 7%;
       flex-basis: 7%;
 }
 
-.btn.long {
+.long {
   -ms-flex-preferred-size: 13%;
       flex-basis: 13%;
 }
 
-.btn.spaceLong {
+.spaceLong {
   -ms-flex-preferred-size: 35%;
       flex-basis: 35%;
 }
 
-.btn.enterLong {
-  -ms-flex-preferred-size: 18%;
-      flex-basis: 18%;
-}
-
 .arrowUp {
-  margin-right: 71px;
+  margin-right: 75px;
 }
 
 .active {

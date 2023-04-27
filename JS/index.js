@@ -1,4 +1,4 @@
-class Keyboard {
+class virtualKeyboard {
   constructor() {
     this.keyboardEventsCode = [
       [
@@ -61,7 +61,6 @@ class Keyboard {
         "Comma",
         "Period",
         "Slash",
-        "ArrowUp",
         "ShiftRight",
         "ArrowUp",
       ],
@@ -369,7 +368,46 @@ class Keyboard {
     virtualKeyboard.classList.add("virtual-keyboard");
     wrapper.append(virtualKeyboard);
   }
+
+  // FILL BUTTONS CODE NUMBER
+  fillCodeNumber() {
+    const eventCode = this.keyboardEventsCode;
+    for (let i = 0; i < eventCode.length; i++) {
+      const keyboardRows = document.createElement("div");
+      keyboardRows.classList.add("row");
+      document.querySelector(".virtual-keyboard").append(keyboardRows);
+
+      for (let code of eventCode[i]) {
+        const btn = document.createElement("div");
+        btn.classList.add("btn");
+        btn.classList.add(code);
+
+        if (code === "Space") {
+          btn.classList.add("spaceLong");
+        } else if (code === "ArrowUp") {
+          btn.classList.add("arrowUp");
+        } else if (
+          code === "Backspace" ||
+          code === "Enter" ||
+          code === "CapsLock" ||
+          code === "ShiftLeft" ||
+          code === "ShiftRight"
+        ) {
+          btn.classList.add("long");
+        } else if (
+          code === "ControlRight" ||
+          code === "ControlLeft" ||
+          code === "Tab" ||
+          code === "Delete"
+        ) {
+          btn.classList.add("medium");
+        }
+        keyboardRows.append(btn);
+      }
+    }
+  }
 }
 
-const keyboard = new Keyboard();
+const keyboard = new virtualKeyboard();
 keyboard.createElements();
+keyboard.fillCodeNumber();

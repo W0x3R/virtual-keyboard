@@ -1,0 +1,95 @@
+.body {
+  background-image: url(../Assets/spaces.jpg);
+  background-repeat: no-repeat;
+}
+
+.wrapper {
+  max-width: 1100px;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.textarea {
+  width: 70%;
+  max-width: 1280px;
+  height: 200px;
+  resize: none;
+  background-color: azure;
+  opacity: 0.6;
+  border: 5px solid #0058ff;
+  padding: 15px;
+  font: 32px "Bruno Ace", monospace;
+}
+
+.title {
+  color: white;
+  font-size: 42px;
+  padding: 15px 20px;
+}
+
+.virtual-keyboard {
+  display: flex;
+  flex-flow: column wrap;
+  padding: 10px;
+  background: #8f9d9d;
+  margin-top: 30px;
+  border-radius: 20px;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+
+.btn {
+  user-select: none;
+  display: flex;
+  flex-basis: 5%;
+  height: 50px;
+  border-radius: 10px;
+  color: #f8f8f8;
+  background-color: #201f61;
+  border: 5px solid #af2d2d;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid lightblue;
+  font-size: 1.5rem;
+  margin-right: 10px;
+  transition: 0.1s;
+  cursor: pointer;
+}
+.btn:hover {
+  color: #f8f8f8;
+  border-radius: 20px;
+  background-color: #0f0d6d;
+  border: 5px solid #e70d0d;
+}
+
+.btn.mid {
+  flex-basis: 7%;
+}
+
+.btn.long {
+  flex-basis: 13%;
+}
+
+.btn.spaceLong {
+  flex-basis: 35%;
+}
+
+.btn.enterLong {
+  flex-basis: 18%;
+}
+
+.arrowUp {
+  margin-right: 71px;
+}
+
+.active {
+  background-color: #c3a000;
+  color: #333333;
+  transform: scale(0.9);
+}

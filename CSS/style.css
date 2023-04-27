@@ -2,34 +2,30 @@
   background-image: url(../Assets/spaces.jpg);
   background-repeat: no-repeat;
 }
-
-.wrapper {
+.body .wrapper {
+  margin: 0 auto;
   max-width: 1100px;
   width: 100%;
   height: 100%;
-  margin: 0 auto;
   text-align: center;
 }
-
-.textarea {
+.body .wrapper .title {
+  padding: 15px 20px;
+  font-size: 42px;
+  color: cornflowerblue;
+}
+.body .wrapper .textarea {
+  padding: 15px;
   width: 70%;
   max-width: 1280px;
   height: 200px;
-  resize: none;
-  background-color: azure;
   opacity: 0.6;
-  border: 5px solid #0058ff;
-  padding: 15px;
+  resize: none;
+  background-color: cornflowerblue;
+  border: 5px solid colorBlack;
   font: 32px "Bruno Ace", monospace;
 }
-
-.title {
-  color: white;
-  font-size: 42px;
-  padding: 15px 20px;
-}
-
-.virtual-keyboard {
+.body .wrapper .virtual-keyboard {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -38,77 +34,69 @@
       -ms-flex-flow: column wrap;
           flex-flow: column wrap;
   padding: 10px;
-  background: #8f9d9d;
   margin-top: 30px;
+  border: 5px solid black;
   border-radius: 20px;
+  background: darkgray;
 }
-
-.row {
+.body .wrapper .virtual-keyboard .row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-bottom: 10px;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  margin-bottom: 10px;
 }
-
-.btn {
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+.body .wrapper .virtual-keyboard .btn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-preferred-size: 5%;
-      flex-basis: 5%;
-  height: 50px;
-  border-radius: 10px;
-  color: #f8f8f8;
-  background-color: #201f61;
-  border: 5px solid #af2d2d;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 5px solid lightblue;
-  font-size: 1.5rem;
+  -ms-flex-preferred-size: 5%;
+      flex-basis: 5%;
   margin-right: 10px;
+  height: 50px;
+  border-radius: 10px;
+  border: 5px solid cornflowerblue;
+  background-color: aliceblue;
+  color: navy;
+  font-size: 1.5rem;
   -webkit-transition: 0.1s;
   transition: 0.1s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
   cursor: pointer;
 }
-
-.btn:hover {
-  color: #f8f8f8;
+.body .wrapper .virtual-keyboard .btn:hover {
+  color: white;
   border-radius: 20px;
-  background-color: #0f0d6d;
-  border: 5px solid #e70d0d;
+  background-color: darkslateblue;
+  border: 5px solid white;
 }
-
-.medium {
+.body .wrapper .virtual-keyboard .medium {
   -ms-flex-preferred-size: 7%;
       flex-basis: 7%;
 }
-
-.long {
+.body .wrapper .virtual-keyboard .long {
   -ms-flex-preferred-size: 13%;
       flex-basis: 13%;
 }
-
-.spaceLong {
+.body .wrapper .virtual-keyboard .spaceLong {
   -ms-flex-preferred-size: 35%;
       flex-basis: 35%;
 }
-
-.arrowUp {
+.body .wrapper .virtual-keyboard .arrowUp {
   margin-right: 75px;
 }
-
-.active {
+.body .wrapper .virtual-keyboard .active {
   background-color: #c3a000;
   color: #333333;
   -webkit-transform: scale(0.9);

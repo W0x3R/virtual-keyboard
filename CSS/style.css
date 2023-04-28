@@ -48,16 +48,13 @@
           justify-content: space-between;
   margin-bottom: 10px;
 }
-.body .wrapper .virtual-keyboard .btn {
+.body .wrapper .virtual-keyboard .row .btn {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   -ms-flex-preferred-size: 5%;
       flex-basis: 5%;
   margin-right: 10px;
@@ -74,31 +71,32 @@
       -ms-user-select: none;
           user-select: none;
   cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
-.body .wrapper .virtual-keyboard .btn:hover {
-  color: white;
+.body .wrapper .virtual-keyboard .row .btn:hover {
+  border: 5px solid navy;
   border-radius: 20px;
-  background-color: darkslateblue;
-  border: 5px solid white;
 }
-.body .wrapper .virtual-keyboard .medium {
+.body .wrapper .virtual-keyboard .row .active {
+  background-color: cornflowerblue;
+  color: white;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+.body .wrapper .virtual-keyboard .row .medium {
   -ms-flex-preferred-size: 7%;
       flex-basis: 7%;
 }
-.body .wrapper .virtual-keyboard .long {
+.body .wrapper .virtual-keyboard .row .long {
   -ms-flex-preferred-size: 13%;
       flex-basis: 13%;
 }
-.body .wrapper .virtual-keyboard .spaceLong {
+.body .wrapper .virtual-keyboard .row .spaceLong {
   -ms-flex-preferred-size: 35%;
       flex-basis: 35%;
 }
-.body .wrapper .virtual-keyboard .arrowUp {
+.body .wrapper .virtual-keyboard .row .arrowUp {
   margin-right: 75px;
-}
-.body .wrapper .virtual-keyboard .active {
-  background-color: #c3a000;
-  color: #333333;
-  -webkit-transform: scale(0.9);
-          transform: scale(0.9);
 }

@@ -1,21 +1,19 @@
 @import "_variables";
+
 .body {
   background-image: url(../Assets/spaces.jpg);
   background-repeat: no-repeat;
-
   .wrapper {
     margin: 0 auto;
     max-width: 1100px;
     width: 100%;
     height: 100%;
     text-align: center;
-
     .title {
       padding: 15px 20px;
       font-size: 42px;
       color: $colorFlowerBlue;
     }
-
     .textarea {
       padding: 15px;
       width: 70%;
@@ -27,7 +25,6 @@
       border: 5px solid colorBlack;
       font: 32px "Bruno Ace", monospace;
     }
-
     .virtual-keyboard {
       display: flex;
       flex-flow: column wrap;
@@ -35,59 +32,51 @@
       margin-top: 30px;
       border: 5px solid $colorBlack;
       border-radius: 20px;
-      background: $colorDarkGray;
-
-      .row {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 10px;
-      }
-
-      .btn {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-basis: 5%;
-        margin-right: 10px;
-        height: 50px;
-        border-radius: 10px;
-        border: 5px solid $colorFlowerBlue;
-        background-color: $colorAliceblue;
-        color: $colorBlackBlue;
-        font-size: 1.5rem;
-        transition: 0.1s;
-        user-select: none;
-        cursor: pointer;
-
-        &:hover {
-          color: $colorWhite;
-          border-radius: 20px;
-          background-color: darkslateblue;
-          border: 5px solid $colorWhite;
-        }
-      }
-
-      .medium {
-        flex-basis: 7%;
-      }
-
-      .long {
-        flex-basis: 13%;
-      }
-
-      .spaceLong {
-        flex-basis: 35%;
-      }
-
-      .arrowUp {
-        margin-right: 75px;
-      }
-
-      .active {
-        background-color: #c3a000;
-        color: #333333;
-        transform: scale(0.9);
-      }
+      background: $colorDarkGray; 
+        .row {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 10px;
+          .btn {
+            display: flex;
+            justify-content: center;
+            flex-basis: 5%;
+            margin-right: 10px;
+            height: 50px;
+            border-radius: 10px;
+            border: 5px solid $colorFlowerBlue;
+            background-color: $colorAliceblue;
+            color: $colorBlackBlue;
+            font-size: 1.5rem;
+            transition: 0.1s;
+            user-select: none;
+            cursor: pointer;
+            align-items: center;
+          }
+          .btn:hover {
+            border: 5px solid $colorBlackBlue;
+            border-radius: 20px;
+          }
+          .active {
+            background-color: $colorFlowerBlue; 
+            color: $colorWhite;
+            transform: scale(0.9);
+          }   
+          .medium {
+            flex-basis: 7%;
+          }
+          .long {
+            flex-basis: 13%;
+          }
+          .spaceLong {
+            flex-basis: 35%;
+          }
+          .arrowUp {
+            margin-right: 75px;
+          }
+       }
     }
   }
 }
+
+

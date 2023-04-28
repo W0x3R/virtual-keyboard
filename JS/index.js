@@ -75,7 +75,6 @@ class VirtualKeyboard {
         'ControlRight',
         'ArrowLeft',
         'ArrowDown',
-        'OSLeft',
         'ArrowRight',
       ],
     ];
@@ -359,8 +358,7 @@ class VirtualKeyboard {
   }
 
   // CREATE HTML ELEMENTS
-  createElements(args) {
-    this.args = args;
+  createElements() {
     const body = document.querySelector('body');
     body.classList.add('body');
 
@@ -373,13 +371,15 @@ class VirtualKeyboard {
     title.textContent = 'Virtual keyboard for Windows';
     wrapper.prepend(title);
 
-    const textArea = document.createElement('textarea');
-    textArea.classList.add('textarea');
-    wrapper.append(textArea);
+    const textarea = document.createElement('textarea');
+    textarea.classList.add('textarea');
+    wrapper.append(textarea);
 
     const virtualKeyboard = document.createElement('div');
     virtualKeyboard.classList.add('virtual-keyboard');
     wrapper.append(virtualKeyboard);
+
+    this.textarea = textarea;
   }
 
   // FILL BUTTONS CODE NUMBER
@@ -419,8 +419,33 @@ class VirtualKeyboard {
       });
     }
   }
+
+  newApportionment(app) {
+    this.app = app;
+    const allBtn = document.querySelectorAll('.btn');
+    const newApp = app.reduce((first, others) => first.concat(others));
+    allBtn.forEach((element, index) => element.innerHTML = newApp[index]);
+  }
+
+  keyboardEvent(event) {
+    this.event = event;
+    if (event.code === undefined) {
+      return event.target;
+    }
+    return document.querySelector(`.${event.code}`);
+  }
+
+  addActive(value) {
+    this.value = value;
+    if (value.className.includes('CapsLock')) {
+      value.classList.toggle('active');
+    } else {
+      value.classList.add('active');
+    }
+  }
 }
 
 const keyboard = new VirtualKeyboard();
 keyboard.createElements();
 keyboard.fillCodeNumber();
+keyboard.newApportionment(keyboard.keyboardStateController().lowerCase);

@@ -41,8 +41,8 @@ class VirtualKeyboard {
     ];
 
     this.keyboardState = {
-      isCaps: false,
-      clicked: undefined,
+      caps: false,
+      click: undefined,
     };
   }
 
@@ -135,9 +135,64 @@ class VirtualKeyboard {
       value.classList.add('active');
     }
   }
+
+  keyboardCheckLanguage(language) {
+    this.language = language;
+    if (localStorage.getItem('En') === null) {
+      localStorage.setItem('En', true);
+    } else {
+      localStorage.setItem('En', language);
+    }
+    return language;
+  }
+
+  checkUpOrLow() {
+    const currentState = {
+      upper: undefined,
+      lower: undefined,
+    };
+
+    if (localStorage.getItem('En') === 'false') {
+      currentState.upper = this.keyboardRusUpperCase;
+      currentState.lower = this.keyboardRusLowerCase;
+    } else {
+      currentState.upper = this.keyboardEnUpperCase;
+      currentState.lower = this.keyboardEnLowerCase;
+    }
+    return currentState;
+  }
+
+  action() {
+    document.addEventListener('keydown', this.push.bind(this));
+    document.addEventListener('keyup', this.release.bind(this));
+    window.addEventListener('mousedown', this.push.bind(this));
+    window.addEventListener('mouseup', this.release.bind(this));
+  }
+
+  langChanger() {
+    if (document.querySelector('.ShiftLeft').className.includes('active') && document.querySelector('.AltLeft').className.includes('active')) {
+      if (localStorage.getItem('En') === 'true') {
+        this.keyboardCheckLanguage(false);
+
+        if (this.keyboardState.caps) {
+          this.newApportionment(this.checkUpOrLow().upper);
+        } else {
+          this.newApportionment(this.checkUpOrLow().lower);
+        }
+      } else if (localStorage.getItem('En') === 'false') {
+        this.keyboardCheckLanguage(true);
+
+        if (this.keyboardState.caps) {
+          this.newApportionment(this.checkUpOrLow().upper);
+        } else {
+          this.newApportionment(this.checkUpOrLow().lower);
+        }
+      }
+    }
+  }
 }
 
 const keyboard = new VirtualKeyboard();
 keyboard.createElements();
 keyboard.fillCodeNumber();
-keyboard.newApportionment(keyboard.keyboardStateController().lowerCase);
+keyboard.newApportionment(keyboard.checkUpOrLow().lower);

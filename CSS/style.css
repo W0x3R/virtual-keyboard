@@ -14,6 +14,52 @@
   padding: 15px 20px;
   font-size: 42px;
   color: cornflowerblue;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+  -webkit-animation-name: changeColor;
+          animation-name: changeColor;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+@-webkit-keyframes changeColor {
+  0% {
+    color: #1100ff;
+  }
+  20% {
+    color: #558ABB;
+  }
+  40% {
+    color: #ff8800;
+  }
+  60% {
+    color: darkslateblue;
+  }
+  80% {
+    color: darkgray;
+  }
+  100% {
+    color: #1100ff;
+  }
+}
+@keyframes changeColor {
+  0% {
+    color: #1100ff;
+  }
+  20% {
+    color: #558ABB;
+  }
+  40% {
+    color: #ff8800;
+  }
+  60% {
+    color: darkslateblue;
+  }
+  80% {
+    color: darkgray;
+  }
+  100% {
+    color: #1100ff;
+  }
 }
 .body .wrapper .textarea {
   padding: 15px;
@@ -23,8 +69,28 @@
   opacity: 0.6;
   resize: none;
   background-color: cornflowerblue;
-  border: 5px solid colorBlack;
+  border: 5px solid black;
   font: 32px "Bruno Ace", monospace;
+}
+.body .wrapper .textarea::-webkit-input-placeholder {
+  color: rgb(119, 0, 255);
+  text-align: center;
+}
+.body .wrapper .textarea::-moz-placeholder {
+  color: rgb(119, 0, 255);
+  text-align: center;
+}
+.body .wrapper .textarea:-ms-input-placeholder {
+  color: rgb(119, 0, 255);
+  text-align: center;
+}
+.body .wrapper .textarea::-ms-input-placeholder {
+  color: rgb(119, 0, 255);
+  text-align: center;
+}
+.body .wrapper .textarea::placeholder {
+  color: rgb(119, 0, 255);
+  text-align: center;
 }
 .body .wrapper .virtual-keyboard {
   background-image: url(../Assets/space.jpg);
@@ -79,7 +145,7 @@
 }
 .body .wrapper .virtual-keyboard .row .btn:hover {
   border: 5px solid navy;
-  border-radius: 20px;
+  border-radius: 30px;
 }
 .body .wrapper .virtual-keyboard .row .active {
   background-color: cornflowerblue;

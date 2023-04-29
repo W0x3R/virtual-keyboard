@@ -14,6 +14,29 @@
       padding: 15px 20px;
       font-size: 42px;
       color: $colorFlowerBlue;
+      animation-duration: 4s;
+      animation-name: changeColor;
+      animation-iteration-count: infinite;
+    }
+    @keyframes changeColor {
+      0% {
+        color: #1100ff;
+      }
+      20% {
+        color: #558ABB;
+      }
+      40% {
+        color: #ff8800;
+      }
+      60% {
+        color: $colorDarkslateBlue;
+      }
+      80% {
+        color: $colorDarkGray;
+      }
+      100% {
+        color: #1100ff;
+      }
     }
     .textarea {
       padding: 15px;
@@ -23,8 +46,12 @@
       opacity: 0.6;
       resize: none;
       background-color: $colorFlowerBlue;
-      border: 5px solid colorBlack;
+      border: 5px solid $colorBlack;
       font: 32px "Bruno Ace", monospace;
+      &::placeholder {
+        color: rgb(119, 0, 255);
+        text-align: center;
+      }
     }
     .virtual-keyboard {
       background-image: url(../Assets/space.jpg);
@@ -57,7 +84,7 @@
           }
           .btn:hover {
             border: 5px solid $colorBlackBlue;
-            border-radius: 20px;
+            border-radius: 30px;
           }
           .active {
             background-color: $colorFlowerBlue; 
@@ -76,7 +103,7 @@
           .arrowUp {
             margin-right: 90px;
           }
-       }
+        }
     }
   }
 }

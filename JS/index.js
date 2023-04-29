@@ -63,6 +63,7 @@ class VirtualKeyboard {
     const textarea = document.createElement('textarea');
     textarea.classList.add('textarea');
     wrapper.append(textarea);
+    textarea.placeholder = 'To change language press shift + alt';
 
     const virtualKeyboard = document.createElement('div');
     virtualKeyboard.classList.add('virtual-keyboard');

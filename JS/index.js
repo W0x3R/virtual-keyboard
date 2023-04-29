@@ -119,6 +119,7 @@ class VirtualKeyboard {
     });
   }
 
+  // Events code for keyboard
   keyboardEvent(event) {
     this.event = event;
     if (event.code === undefined) {
@@ -127,15 +128,7 @@ class VirtualKeyboard {
     return document.querySelector(`.${event.code}`);
   }
 
-  switchActive(value) {
-    this.value = value;
-    if (value.className.includes('CapsLock')) {
-      value.classList.toggle('active');
-    } else {
-      value.classList.add('active');
-    }
-  }
-
+  // Check language
   keyboardCheckLanguage(language) {
     this.language = language;
     if (localStorage.getItem('En') === null) {
@@ -146,6 +139,7 @@ class VirtualKeyboard {
     return language;
   }
 
+  // Check upperCase or lowerCase
   checkUpOrLow() {
     const currentState = {
       upper: undefined,
@@ -169,7 +163,8 @@ class VirtualKeyboard {
     window.addEventListener('mouseup', this.release.bind(this));
   }
 
-  langChanger() {
+  // Swapping language
+  swapLang() {
     if (document.querySelector('.ShiftLeft').className.includes('active') && document.querySelector('.AltLeft').className.includes('active')) {
       if (localStorage.getItem('En') === 'true') {
         this.keyboardCheckLanguage(false);
@@ -190,9 +185,122 @@ class VirtualKeyboard {
       }
     }
   }
+
+  // Capslock switch active
+  switchActive(value) {
+    this.value = value;
+    if (value.className.includes('CapsLock')) {
+      value.classList.toggle('active');
+    } else {
+      value.classList.add('active');
+    }
+  }
+
+  // Shift buttons
+  shiftPress() {
+    if (!this.keyboardState.caps) {
+      this.newApportionment(this.checkUpOrLow().lower);
+    } else if (this.keyboardState.caps) {
+      this.newApportionment(this.checkUpOrLow().upper);
+    }
+  }
+
+  shiftRelease(event) {
+    if (!this.keyboardState.caps) {
+      this.newApportionment(this.checkUpOrLow().upper);
+    } else if (this.keyboardState.caps) {
+      this.newApportionment(this.checkUpOrLow().lower);
+    }
+    this.switchActive(this.keyboardEvent(event));
+  }
+
+  // Capslock button
+  buttonCapslock(event) {
+    if (!this.keyboardState.caps) {
+      this.newApportionment(this.checkUpOrLow().upper);
+      this.keyboardState.caps = true;
+    } else if (this.keyboardState.caps) {
+      this.newApportionment(this.checkUpOrLow().lower);
+      this.keyboardState.caps = false;
+    }
+    this.switchActive(this.keyboardEvent(event));
+  }
+
+  // Space button
+  buttonSpace(event) {
+    event.preventDefault();
+
+    const start = this.textarea.selectionStart;
+    const end = this.textarea.selectionEnd;
+
+    this.switchActive(this.keyboardEvent(event));
+    this.textarea.setRangeText(' ', start, end, 'end');
+  }
+
+  // Enter button
+  buttonEnter(event) {
+    event.preventDefault();
+
+    const start = this.textarea.selectionStart;
+    const end = this.textarea.selectionEnd;
+
+    this.switchActive(this.keyboardEvent(event));
+    this.textarea.setRangeText('\n', start, end, 'end');
+  }
+
+  // Tab button
+  buttonTab(event) {
+    event.preventDefault();
+
+    const start = this.textarea.selectionStart;
+    const end = this.textarea.selectionEnd;
+
+    this.switchActive(this.keyboardEvent(event));
+    this.textarea.setRangeText('\t', start, end, 'end');
+  }
+
+  // Space button
+  buttonBackspace(event) {
+    event.preventDefault();
+    this.switchActive(this.keyboardEvent(event));
+
+    const start = this.textarea.selectionStart;
+    const end = this.textarea.selectionEnd;
+
+    if (this.textarea.value === '') {
+      return;
+    }
+
+    if (start === end) {
+      this.textarea.setRangeText('', start - 1, end);
+    } else {
+      this.textarea.setRangeText('', start, end);
+    }
+  }
+
+  // Delete button
+  buttonDelete(event) {
+    event.preventDefault();
+    this.switchActive(this.keyboardEvent(event));
+
+    const start = this.textarea.selectionStart;
+    const end = this.textarea.selectionEnd;
+
+    if (this.textarea.value === '') {
+      return;
+    }
+
+    if (start === end) {
+      this.textarea.setRangeText('', start, end + 1);
+    } else {
+      this.textarea.setRangeText('', start, end);
+    }
+  }
 }
 
 const keyboard = new VirtualKeyboard();
 keyboard.createElements();
 keyboard.fillCodeNumber();
 keyboard.newApportionment(keyboard.checkUpOrLow().lower);
+keyboard.keyboardCheckLanguage(localStorage.getItem('En'));
+keyboard.action();

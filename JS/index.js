@@ -289,7 +289,6 @@ class VirtualKeyboard {
     if (this.textarea.value === '') {
       return;
     }
-
     if (start === end) {
       this.textarea.setRangeText('', start, end + 1);
     } else {
@@ -304,3 +303,20 @@ keyboard.fillCodeNumber();
 keyboard.newApportionment(keyboard.checkUpOrLow().lower);
 keyboard.keyboardCheckLanguage(localStorage.getItem('En'));
 keyboard.action();
+
+// Sounds for keyboard
+const buttons = document.querySelectorAll('.btn');
+
+const audio = new Audio('../Assets/cb08c3923b42e5c.mp3');
+
+buttons.forEach((elem) => elem.addEventListener('click', () => {
+  audio.play();
+}));
+
+document.querySelector('body').addEventListener('keydown', () => {
+  audio.play();
+});
+
+document.querySelector('body').addEventListener('keyup', () => {
+  audio.play();
+});

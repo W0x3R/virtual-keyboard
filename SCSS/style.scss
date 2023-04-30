@@ -84,13 +84,14 @@
           }
           .btn:hover {
             border: 5px solid $colorBlackBlue;
-            border-radius: 30px;
+            border-radius: 25px;
           }
           .active {
             background-color: $colorFlowerBlue; 
             color: $colorWhite;
             transform: scale(0.9);
-          }   
+            border-radius: 35px;
+          }
           .medium {
             flex-basis: 7%;
           }

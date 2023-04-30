@@ -145,13 +145,14 @@
 }
 .body .wrapper .virtual-keyboard .row .btn:hover {
   border: 5px solid navy;
-  border-radius: 30px;
+  border-radius: 25px;
 }
 .body .wrapper .virtual-keyboard .row .active {
   background-color: cornflowerblue;
   color: white;
   -webkit-transform: scale(0.9);
           transform: scale(0.9);
+  border-radius: 35px;
 }
 .body .wrapper .virtual-keyboard .row .medium {
   -ms-flex-preferred-size: 7%;

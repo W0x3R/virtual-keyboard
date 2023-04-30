@@ -303,10 +303,6 @@ class VirtualKeyboard {
     document.querySelector('body').addEventListener('keydown', () => {
       audio.play();
     });
-
-    document.querySelector('body').addEventListener('keyup', () => {
-      audio.play();
-    });
   }
 
   addSymbol(event) {
@@ -323,47 +319,55 @@ class VirtualKeyboard {
     this.textarea.focus();
     this.keyboardState.click = event.target;
 
-    if (this.keyboardEvent(event).className.includes('Tab')) {
-      this.buttonTab(event);
-    } else if (this.keyboardEvent(event).className.includes('CapsLock')) {
-      this.buttonCapslock(event);
-    } else if (this.keyboardEvent(event).className.includes('ShiftLeft') || this.keyboardEvent(event).className.includes('ShiftRight')) {
-      this.shiftRelease(event);
-    } else if (this.keyboardEvent(event).className.includes('Space')) {
-      this.buttonSpace(event);
-    } else if (this.keyboardEvent(event).className.includes('ControlLeft')
-    || this.keyboardEvent(event).className.includes('ControlRight')
-    || this.keyboardEvent(event).className.includes('AltLeft')
-    || this.keyboardEvent(event).className.includes('AltRight')
-    || this.keyboardEvent(event).className.includes('OSLeft')) {
-      event.preventDefault();
-      this.keyboardEvent(event).classList.add('active');
-    } else if (this.keyboardEvent(event).className.includes('Backspace')) {
-      this.buttonBackspace(event);
-    } else if (this.keyboardEvent(event).className.includes('Delete')) {
-      this.buttonDelete(event);
-    } else if (this.keyboardEvent(event).className.includes('Enter')) {
-      this.buttonEnter(event);
-    } else if (this.keyboardEvent(event).className.includes('btn')) {
-      this.addSymbol(event);
+    try {
+      if (this.keyboardEvent(event).className.includes('Tab')) {
+        this.buttonTab(event);
+      } else if (this.keyboardEvent(event).className.includes('CapsLock')) {
+        this.buttonCapslock(event);
+      } else if (this.keyboardEvent(event).className.includes('ShiftLeft') || this.keyboardEvent(event).className.includes('ShiftRight')) {
+        this.shiftRelease(event);
+      } else if (this.keyboardEvent(event).className.includes('Space')) {
+        this.buttonSpace(event);
+      } else if (this.keyboardEvent(event).className.includes('ControlLeft')
+      || this.keyboardEvent(event).className.includes('ControlRight')
+      || this.keyboardEvent(event).className.includes('AltLeft')
+      || this.keyboardEvent(event).className.includes('AltRight')
+      || this.keyboardEvent(event).className.includes('OSLeft')) {
+        event.preventDefault();
+        this.keyboardEvent(event).classList.add('active');
+      } else if (this.keyboardEvent(event).className.includes('Backspace')) {
+        this.buttonBackspace(event);
+      } else if (this.keyboardEvent(event).className.includes('Delete')) {
+        this.buttonDelete(event);
+      } else if (this.keyboardEvent(event).className.includes('Enter')) {
+        this.buttonEnter(event);
+      } else if (this.keyboardEvent(event).className.includes('btn')) {
+        this.addSymbol(event);
+      }
+      this.swapLang();
+    } catch (err) {
+      this.soundsPlay();
     }
-    this.swapLang();
   }
 
   output(event) {
-    if (!this.keyboardState.click.className.includes('CapsLock')) {
-      this.keyboardState.click.classList.remove('active');
-    }
+    try {
+      if (!this.keyboardState.click.className.includes('CapsLock')) {
+        this.keyboardState.click.classList.remove('active');
+      }
 
-    if (!this.keyboardEvent(event).className.includes('CapsLock')) {
-      this.keyboardEvent(event).classList.remove('active');
-    }
+      if (!this.keyboardEvent(event).className.includes('CapsLock')) {
+        this.keyboardEvent(event).classList.remove('active');
+      }
 
-    if (this.keyboardState.click.className.includes('ShiftLeft') || this.keyboardState.click.className.includes('ShiftRight')
-    || this.keyboardEvent(event).className.includes('ShiftLeft') || this.keyboardEvent(event).className.includes('ShiftRight')) {
-      this.shiftPress(event);
-      document.querySelector('.ShiftLeft').classList.remove('active');
-      document.querySelector('.ShiftRight').classList.remove('active');
+      if (this.keyboardState.click.className.includes('ShiftLeft') || this.keyboardState.click.className.includes('ShiftRight')
+      || this.keyboardEvent(event).className.includes('ShiftLeft') || this.keyboardEvent(event).className.includes('ShiftRight')) {
+        this.shiftPress(event);
+        document.querySelector('.ShiftLeft').classList.remove('active');
+        document.querySelector('.ShiftRight').classList.remove('active');
+      }
+    } catch (err) {
+      this.soundsPlay();
     }
   }
 

@@ -1,0 +1,171 @@
+.body {
+  background-image: url(../Assets/spaces.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.body .wrapper {
+  margin: 0 auto;
+  max-width: 1300px;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.body .wrapper .title {
+  padding: 15px 20px;
+  font-size: 42px;
+  color: cornflowerblue;
+  -webkit-animation-duration: 4s;
+          animation-duration: 4s;
+  -webkit-animation-name: changeColor;
+          animation-name: changeColor;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+@-webkit-keyframes changeColor {
+  0% {
+    color: #1100ff;
+  }
+  20% {
+    color: #558ABB;
+  }
+  40% {
+    color: #ff8800;
+  }
+  60% {
+    color: darkslateblue;
+  }
+  80% {
+    color: darkgray;
+  }
+  100% {
+    color: #1100ff;
+  }
+}
+@keyframes changeColor {
+  0% {
+    color: #1100ff;
+  }
+  20% {
+    color: #558ABB;
+  }
+  40% {
+    color: #ff8800;
+  }
+  60% {
+    color: darkslateblue;
+  }
+  80% {
+    color: darkgray;
+  }
+  100% {
+    color: #1100ff;
+  }
+}
+.body .wrapper .textarea {
+  padding: 15px;
+  width: 80%;
+  max-width: 1280px;
+  height: 280px;
+  opacity: 0.6;
+  resize: none;
+  background-color: cornflowerblue;
+  border: 5px solid black;
+  font: 32px "Bruno Ace", monospace;
+}
+.body .wrapper .textarea::-webkit-input-placeholder {
+  color: rgb(119, 0, 255);
+  text-align: center;
+}
+.body .wrapper .textarea::-moz-placeholder {
+  color: rgb(119, 0, 255);
+  text-align: center;
+}
+.body .wrapper .textarea:-ms-input-placeholder {
+  color: rgb(119, 0, 255);
+  text-align: center;
+}
+.body .wrapper .textarea::-ms-input-placeholder {
+  color: rgb(119, 0, 255);
+  text-align: center;
+}
+.body .wrapper .textarea::placeholder {
+  color: rgb(119, 0, 255);
+  text-align: center;
+}
+.body .wrapper .virtual-keyboard {
+  background-image: url(../Assets/space.jpg);
+  background-repeat: no-repeat;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column wrap;
+          flex-flow: column wrap;
+  padding: 10px;
+  margin-top: 30px;
+  border: 5px solid black;
+  border-radius: 20px;
+}
+.body .wrapper .virtual-keyboard .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 10px;
+}
+.body .wrapper .virtual-keyboard .row .btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-preferred-size: 5%;
+      flex-basis: 5%;
+  margin-right: 10px;
+  height: 50px;
+  border-radius: 10px;
+  border: 5px solid cornflowerblue;
+  background-color: aliceblue;
+  color: navy;
+  font-size: 1.5rem;
+  -webkit-transition: 0.1s;
+  transition: 0.1s;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.body .wrapper .virtual-keyboard .row .btn:hover {
+  border: 5px solid navy;
+  border-radius: 25px;
+}
+.body .wrapper .virtual-keyboard .row .active {
+  background-color: cornflowerblue;
+  color: white;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  border-radius: 35px;
+}
+.body .wrapper .virtual-keyboard .row .medium {
+  -ms-flex-preferred-size: 7%;
+      flex-basis: 7%;
+}
+.body .wrapper .virtual-keyboard .row .long {
+  -ms-flex-preferred-size: 13%;
+      flex-basis: 13%;
+}
+.body .wrapper .virtual-keyboard .row .spaceLong {
+  -ms-flex-preferred-size: 35%;
+      flex-basis: 35%;
+}
+.body .wrapper .virtual-keyboard .row .arrowUp {
+  margin-right: 90px;
+}

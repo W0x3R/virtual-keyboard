@@ -157,13 +157,6 @@ class VirtualKeyboard {
     return currentState;
   }
 
-  action() {
-    document.addEventListener('keydown', this.push.bind(this));
-    document.addEventListener('keyup', this.release.bind(this));
-    window.addEventListener('mousedown', this.push.bind(this));
-    window.addEventListener('mouseup', this.release.bind(this));
-  }
-
   // Swapping language
   swapLang() {
     if (document.querySelector('.ShiftLeft').className.includes('active') && document.querySelector('.AltLeft').className.includes('active')) {
@@ -296,6 +289,90 @@ class VirtualKeyboard {
       this.textarea.setRangeText('', start, end);
     }
   }
+
+  // Sounds for keyboard
+  soundsPlay(element) {
+    this.element = element;
+    const buttons = document.querySelectorAll('.btn');
+    const audio = new Audio('../Assets/cb08c3923b42e5c.mp3');
+
+    buttons.forEach((elem) => elem.addEventListener('click', () => {
+      audio.play();
+    }));
+
+    document.querySelector('body').addEventListener('keydown', () => {
+      audio.play();
+    });
+
+    document.querySelector('body').addEventListener('keyup', () => {
+      audio.play();
+    });
+  }
+
+  addSymbol(event) {
+    event.preventDefault();
+
+    const start = this.textarea.selectionStart;
+    const end = this.textarea.selectionEnd;
+
+    this.switchActive(this.keyboardEvent(event));
+    this.textarea.setRangeText(this.keyboardEvent(event).textContent, start, end, 'end');
+  }
+
+  introduction(event) {
+    this.textarea.focus();
+    this.keyboardState.click = event.target;
+
+    if (this.keyboardEvent(event).className.includes('Tab')) {
+      this.buttonTab(event);
+    } else if (this.keyboardEvent(event).className.includes('CapsLock')) {
+      this.buttonCapslock(event);
+    } else if (this.keyboardEvent(event).className.includes('ShiftLeft') || this.keyboardEvent(event).className.includes('ShiftRight')) {
+      this.shiftRelease(event);
+    } else if (this.keyboardEvent(event).className.includes('Space')) {
+      this.buttonSpace(event);
+    } else if (this.keyboardEvent(event).className.includes('ControlLeft')
+    || this.keyboardEvent(event).className.includes('ControlRight')
+    || this.keyboardEvent(event).className.includes('AltLeft')
+    || this.keyboardEvent(event).className.includes('AltRight')
+    || this.keyboardEvent(event).className.includes('OSLeft')) {
+      event.preventDefault();
+      this.keyboardEvent(event).classList.add('active');
+    } else if (this.keyboardEvent(event).className.includes('Backspace')) {
+      this.buttonBackspace(event);
+    } else if (this.keyboardEvent(event).className.includes('Delete')) {
+      this.buttonDelete(event);
+    } else if (this.keyboardEvent(event).className.includes('Enter')) {
+      this.buttonEnter(event);
+    } else if (this.keyboardEvent(event).className.includes('btn')) {
+      this.addSymbol(event);
+    }
+    this.swapLang();
+  }
+
+  output(event) {
+    if (!this.keyboardState.click.className.includes('CapsLock')) {
+      this.keyboardState.click.classList.remove('active');
+    }
+
+    if (!this.keyboardEvent(event).className.includes('CapsLock')) {
+      this.keyboardEvent(event).classList.remove('active');
+    }
+
+    if (this.keyboardState.click.className.includes('ShiftLeft') || this.keyboardState.click.className.includes('ShiftRight')
+    || this.keyboardEvent(event).className.includes('ShiftLeft') || this.keyboardEvent(event).className.includes('ShiftRight')) {
+      this.shiftPress(event);
+      document.querySelector('.ShiftLeft').classList.remove('active');
+      document.querySelector('.ShiftRight').classList.remove('active');
+    }
+  }
+
+  action() {
+    document.addEventListener('keydown', this.introduction.bind(this));
+    document.addEventListener('keyup', this.output.bind(this));
+    window.addEventListener('mousedown', this.introduction.bind(this));
+    window.addEventListener('mouseup', this.output.bind(this));
+  }
 }
 
 const keyboard = new VirtualKeyboard();
@@ -304,20 +381,4 @@ keyboard.fillCodeNumber();
 keyboard.newApportionment(keyboard.checkUpOrLow().lower);
 keyboard.keyboardCheckLanguage(localStorage.getItem('En'));
 keyboard.action();
-
-// Sounds for keyboard
-const buttons = document.querySelectorAll('.btn');
-
-const audio = new Audio('../Assets/cb08c3923b42e5c.mp3');
-
-buttons.forEach((elem) => elem.addEventListener('click', () => {
-  audio.play();
-}));
-
-document.querySelector('body').addEventListener('keydown', () => {
-  audio.play();
-});
-
-document.querySelector('body').addEventListener('keyup', () => {
-  audio.play();
-});
+keyboard.soundsPlay();
